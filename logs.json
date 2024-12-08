@@ -1,0 +1,7 @@
+{"date":"2024-12-08 18:30:33","level":"WARNING","message":"Был изменен фронт","context":{"ip":"127.0.0.1"},"logger":"TestService"}
+{"date":"2024-12-08 19:15:56","level":"INFO","message":"Произошел перелопат","context":{"ip":"127.0.0.1"},"logger":"TestService"}
+{"date":"2024-12-08 20:04:30","level":"WARNING","message":"Заполняем","context":{"ip":"127.0.0.1"},"logger":"TestService"}
+{"date":"2024-12-08 20:04:41","level":"INFO","message":"Заполняем","context":{"ip":"127.0.0.1"},"logger":"TestService"}
+{"date":"2024-12-08 20:04:51","level":"WARNING","message":"Заполняем","context":{"ip":"127.0.0.1"},"logger":"TestService"}
+{"date":"2024-12-08 20:05:03","level":"DEBUG","message":"Заполняем","context":{"ip":"127.0.0.1"},"logger":"TestService"}
+{"date":"2024-12-08 20:08:14","level":"ERROR","message":"Заполняем Error","context":{"ip":"127.0.0.1"},"logger":"TestService"}

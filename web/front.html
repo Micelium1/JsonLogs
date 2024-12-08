@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кнопка и Форма</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        #form-container {
+            display: none; /* Скрываем форму по умолчанию */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 300px;
+        }
+
+        #form-container input,
+        #form-container button,
+        #form-container select,
+        #form-container textarea {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #main-button,
+        #view-logs-button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin: 10px;
+        }
+
+        #main-button:hover,
+        #view-logs-button:hover {
+            background: #0056b3;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <!-- Кнопка для открытия формы -->
+        <button id="main-button">Отправить лог</button>
+
+        <!-- Кнопка для перехода на страницу логов -->
+        <a href="/view-logs">
+            <button id="view-logs-button">Посмотреть логи</button>
+        </a>
+    </div>
+
+    <!-- Форма -->
+    <div id="form-container">
+        <h3>Создание лога</h3>
+        <form action="/sendLog" method="POST">
+            <select name="log_type" required>
+                <option value="" disabled selected>Выберите тип лога</option>
+                <option value="INFO">INFO</option>
+                <option value="ERROR">ERROR</option>
+                <option value="DEBUG">DEBUG</option>
+                <option value="WARNING">WARNING</option>
+            </select>
+            <textarea name="description" placeholder="Введите описание" rows="4" required></textarea>
+            <button type="submit">Отправить</button>
+        </form>
+        <button id="close-button" style="background: #ccc;">Закрыть</button>
+    </div>
+
+    <script>
+        // Получаем элементы
+        const mainButton = document.getElementById('main-button');
+        const formContainer = document.getElementById('form-container');
+        const closeButton = document.getElementById('close-button');
+
+        // Показываем форму при нажатии на кнопку
+        mainButton.addEventListener('click', () => {
+            formContainer.style.display = 'block';
+        });
+
+        // Закрываем форму при нажатии "Закрыть"
+        closeButton.addEventListener('click', () => {
+            formContainer.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

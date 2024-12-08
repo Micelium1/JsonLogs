@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Логи</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        label, input, select {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .filter-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        .back-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            max-width: 200px;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Список логов</h1>
+
+    <!-- Форма фильтрации -->
+    <form method="GET" action="/view-logs">
+        <div class="filter-container">
+            <!-- Фильтр по времени -->
+            <div class="filter-item">
+                <label for="from_date">С:</label>
+                <input type="date" id="from_date" name="from_date">
+            </div>
+            <div class="filter-item">
+                <label for="to_date">По:</label>
+                <input type="date" id="to_date" name="to_date">
+            </div>
+            <!-- Фильтр по уровню -->
+            <div class="filter-item">
+                <label for="level">Уровень:</label>
+                <select name="level" id="level">
+                    <option value="">Все</option>
+                    <option value="INFO">INFO</option>
+                    <option value="ERROR">ERROR</option>
+                    <option value="DEBUG">DEBUG</option>
+                    <option value="WARNING">WARNING</option>
+                </select>
+            </div>
+            <!-- Фильтр по IP -->
+            <div class="filter-item">
+                <label for="ip">IP:</label>
+                <input type="text" id="ip" name="ip" placeholder="Введите IP">
+            </div>
+            <!-- Фильтр по сервису -->
+            <div class="filter-item">
+                <label for="service">Сервис:</label>
+                <input type="text" id="service" name="service" placeholder="Введите название сервиса">
+            </div>
+            <button type="submit">Применить фильтры</button>
+        </div>
+    </form>
+
+    <!-- Таблица логов -->
+    <table>
+        <thead>
+            <tr>
+                <th>Дата</th>
+                <th>Уровень</th>
+                <th>Сообщение</th>
+                <th>IP</th>
+                <th>Сервис</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{range .}}
+            <tr>
+                <td>{{.Date}}</td>
+                <td>{{.Level}}</td>
+                <td>{{.Message}}</td>
+                <td>{{.Context.Ip}}</td>
+                <td>{{.Logger}}</td>
+            </tr>
+            {{end}}
+        </tbody>
+    </table>
+
+    <!-- Кнопка "Назад на главную" -->
+    <a href="/" class="back-button">Назад на главную</a>
+</body>
+</html>
