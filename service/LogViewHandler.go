@@ -3,8 +3,8 @@ package service
 import (
 	"JsonLogs/model"
 	"encoding/json"
-	"io/ioutil"
 	"net/http"
+	"os"
 	"strings"
 	"text/template"
 	"time"
@@ -35,7 +35,7 @@ func LogViewHandler(w http.ResponseWriter, r *http.Request) {
 
 func readLogs(filename string) ([]model.LogStruct, error) {
 
-	data, err := ioutil.ReadFile(filename)
+	data, err := os.ReadFile(filename)
 	if err != nil {
 		return nil, err
 	}
